@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 2.配置HandlerMapping -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>-->
+
+    <!-- 3.配置HandlerAdapter -->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>-->
+    <!-- mvc的注解驱动 ，用来简化配置  默认加载许多内置类型转化器
+    如果使用自定义类型转换器，需要自己指定
+    -->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!-- 4.配置Handler -->
+    <context:component-scan base-package="controller"/>
+
+    <!-- 5.配置ViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+        <!-- 6.配置View，如果使用的是jsp视图技术，可以省略不写 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    </bean>
+
+    <!--使用tomvat的默认servlet处理静态资源-->
+    <!--<mvc:default-servlet-handler></mvc:default-servlet-handler>-->
+    <!--使用mvc处理静态资源-->
+    <mvc:resources mapping="/img/**" location="/WEB-INF/img/"/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/images/**" location="/images/" />
+
+    <!--直接访问jsp页面-->
+    <mvc:view-controller path="/userLogin" view-name="login"/>
+    <mvc:view-controller path="/showRegist" view-name="regist"/>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--拦截所有请求-->
+        <bean class="interceptor.HelloInterceptor"></bean>
+        <!--拦截指定请求-->
+        <mvc:interceptor>
+            <mvc:mapping path="/user/regist"/>
+            <mvc:mapping path="/login"/>
+            <mvc:mapping path="/path/*"/>
+            <mvc:exclude-mapping path="/path/test1"/>
+            <bean class="interceptor.TimerInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+   <!-- //注册属性编辑器
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="entity.Address" value="edit.AddressEditor"/>
+            </map>
+        </property>
+    </bean>-->
+
+    <!--管理自定义转换器-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="converter.String2AddressConverter"/>
+                <bean class="converter.Address2StringConverter"/>
+            </set>
+        </property>
+    </bean>
+</beans>
