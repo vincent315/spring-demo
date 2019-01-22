@@ -1,0 +1,3 @@
+Executed SQL Statement : show variables like 'lower_case_table_names' 
+Error Number : 3000 
+Error Message: No MyCAT Database selected 
