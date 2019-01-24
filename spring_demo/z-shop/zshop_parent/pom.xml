@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.xzy.z-shop</groupId>
+  <artifactId>zshop_parent</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>zshop_common</module>
+    <module>zshop_pojo</module>
+    <module>zshop_dao</module>
+    <module>zshop_service</module>
+    <module>zshop_front_web</module>
+    <module>shop_backend_web</module>
+  </modules>
+
+  <name>zshop_parent</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <junit.version>4.12</junit.version>
+      <spring.version>4.3.14.RELEASE</spring.version>
+      <mybatis.version>3.4.5</mybatis.version>
+      <mybatis-spring.version>1.3.1</mybatis-spring.version>
+      <pagehelper.version>5.1.2</pagehelper.version>
+      <mysql-connector-java.version>5.1.45</mysql-connector-java.version>
+      <druid.version>1.1.9</druid.version>
+      <fastjson.version>1.2.46</fastjson.version>
+      <commons-fileupload.version>1.3.2</commons-fileupload.version>
+      <cglib.version>3.1</cglib.version>
+      <tomcat7-maven-plugin.version>2.2</tomcat7-maven-plugin.version>
+      <lombok.version>1.18.4</lombok.version>
+      <log4j.version>1.2.12</log4j.version>
+  </properties>
+
+ <dependencyManagement>
+   <dependencies>
+     <dependency>
+       <groupId>junit</groupId>
+       <artifactId>junit</artifactId>
+       <version>${junit.version}</version>
+       <scope>test</scope>
+     </dependency>
+
+     <!--javaEE-->
+       <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>javax.servlet-api</artifactId>
+           <version>3.1.0</version>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>javax.servlet.jsp</groupId>
+           <artifactId>javax.servlet.jsp-api</artifactId>
+           <version>2.3.3</version>
+           <scope>provided</scope>
+       </dependency>
+       <dependency>
+           <groupId>javax.servlet</groupId>
+           <artifactId>jstl</artifactId>
+           <version>1.1.2</version>
+       </dependency>
+
+       <!--spring-->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-core</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-beans</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-context</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-expression</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+
+       <!-- spring-aop -->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-aop</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-aspects</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>cglib</groupId>
+           <artifactId>cglib</artifactId>
+           <version>${cglib.version}</version>
+       </dependency>
+
+       <!-- Spring整合JDBC -->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-jdbc</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-tx</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+       <!-- Spring整合Web-->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-web</artifactId>
+           <version>${spring.version}</version>
+       </dependency>
+
+       <!-- Spring MVC-->
+       <dependency>
+           <groupId>org.springframework</groupId>
+           <artifactId>spring-webmvc</artifactId>
+           <version>4.0.0.RELEASE</version>
+       </dependency>
+       <!-- Spring整合MyBatis-->
+       <dependency>
+           <groupId>org.mybatis</groupId>
+           <artifactId>mybatis</artifactId>
+           <version>${mybatis.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.mybatis</groupId>
+           <artifactId>mybatis-spring</artifactId>
+           <version>${mybatis-spring.version}</version>
+       </dependency>
+
+       <dependency>
+           <groupId>com.github.pagehelper</groupId>
+           <artifactId>pagehelper</artifactId>
+           <version>${pagehelper.version}</version>
+       </dependency>
+       <!-- mysql -->
+       <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+           <version>${mysql-connector-java.version}</version>
+       </dependency>
+
+       <dependency>
+           <groupId>com.alibaba</groupId>
+           <artifactId>druid</artifactId>
+           <version>${druid.version}</version>
+       </dependency>
+
+       <!-- 工具 -->
+       <dependency>
+           <groupId>commons-fileupload</groupId>
+           <artifactId>commons-fileupload</artifactId>
+           <version>${commons-fileupload.version}</version>
+       </dependency>
+
+       <dependency>
+           <groupId>com.alibaba</groupId>
+           <artifactId>fastjson</artifactId>
+           <version>${fastjson.version}</version>
+       </dependency>
+
+       <!-- log4j -->
+       <dependency>
+           <groupId>log4j</groupId>
+           <artifactId>log4j</artifactId>
+           <version>${log4j.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>org.projectlombok</groupId>
+           <artifactId>lombok</artifactId>
+           <version>${lombok.version}</version>
+       </dependency>
+
+
+       <!--commos-codec用来辅助MD5加盐-->
+       <dependency>
+           <groupId>commons-codec</groupId>
+           <artifactId>commons-codec</artifactId>
+           <version>1.9</version>
+       </dependency>
+   </dependencies>
+ </dependencyManagement>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.20.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+
+          <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>${tomcat7-maven-plugin.version}</version>
+          </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
